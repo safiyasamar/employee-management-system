@@ -1,0 +1,27 @@
+server:
+  port: 8400
+  
+spring:
+  application:
+    name: emp-gateway-service
+  cloud:
+      gateway:
+        routes:
+          - id: employee_service
+            uri:  lb://employee-service/
+            predicates:
+              - Path=/e/**
+          - id: admin_service
+            uri:  lb://admin-service/
+            predicates:
+              - Path=/a/**
+          - id: ui_service
+            uri:  lb://ui-service/
+            predicates:
+              - Path=/u/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8100/eureka/}

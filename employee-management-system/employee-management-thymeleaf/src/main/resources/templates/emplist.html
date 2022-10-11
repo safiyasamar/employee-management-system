@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Listing Of All Employee</title>
+<style type="text/css">
+table {
+	border-collapse: collapse;
+	border: 2px solid blue;
+}
+
+th td tr {
+	border: 2px solid blue;
+	width: 10%;
+	height: auto;
+}
+</style>
+</head>
+<body>
+<table border="1">
+		<thead>
+			<tr>
+				<th>Employee No</th>
+				<th>Name</th>
+				<th>Salary</th>
+				<th>City</th>
+			</tr>
+		</thead>
+		<tr th:each="employee:${emplist}">
+			<td><span th:text="${employee.empNo}"></span></td>
+			<td><span th:text="${employee.name}"></span></td>
+			<td><span th:text="${employee.city}"></span></td>
+			<td><span th:text="${employee.salary}"></span></td>
+		</tr>
+	</table>
+</body>
+</html>

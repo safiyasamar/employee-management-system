@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Find Employee By Id</title>
+</head>
+<body>
+	<form action="findemp" method="post">
+		<span>Employee No</span><input type="text" name="id"> <input
+			type="submit" value="find">
+	</form>
+
+	<div th:switch="${empData}">
+		<h2 th:case="null">No Data</h2>
+		<div th:case="*">
+
+			<table border="1">
+				<tr>
+					<td>Emp Id</td>
+					<td><span th:text="*{empData.empNo}"></span></td>
+				</tr>
+				<tr>
+					<td>Name</td>
+					<td><span th:text="*{empData.name}"></span></td>
+				</tr>
+				<tr>
+					<td>City</td>
+					<td><span th:text="*{empData.city}"></span></td>
+				</tr>
+				<tr>
+					<td>Salary</td>
+					<td><span th:text="*{empData.salary}"></span></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

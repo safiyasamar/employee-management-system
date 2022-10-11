@@ -1,0 +1,33 @@
+server:
+  port: 8200
+
+spring:
+  application:
+    name: employee-service
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    password: ${DB_PASSWOED:qaz12345}
+    url: ${JDBC_URL:jdbc:mariadb://training.cf35ca9kunzz.us-east-1.rds.amazonaws.com/training}
+    username: ${DB_USER:admin}
+    hikari:
+      maximum-pool-size: 5
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      
+logging:
+  file:
+   name: logs/employee.log
+    
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8100/eureka/}
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

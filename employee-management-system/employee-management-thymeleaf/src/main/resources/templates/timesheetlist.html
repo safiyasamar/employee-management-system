@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Listing Of All Timesheets</title>
+<style type="text/css">
+table {
+	border-collapse: collapse;
+	border: 2px solid blue;
+}
+
+th td tr {
+	border: 2px solid blue;
+	width: 10%;
+	height: auto;
+}
+</style>
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Timesheet No</th>
+				<th>Employee No</th>
+				<th>Project Id</th>
+				<th>Project Type</th>
+				<th>Location</th>
+				<th>Total Hours</th>
+			</tr>
+		</thead>
+		<tr th:each="timesheet:${timesheetlist}">
+			<td><span th:text="${timesheet.tno}"></span></td>
+			<td><span th:text="${timesheet.empNo}"></span></td>
+			<td><span th:text="${timesheet.pId}"></span></td>
+			<td><span th:text="${timesheet.pType}"></span></td>
+			<td><span th:text="${timesheet.location}"></span></td>
+			<td><span th:text="${timesheet.totalHours}"></span></td>
+		</tr>
+	</table>
+</body>
+</html>

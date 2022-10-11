@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style type="text/css">
+table {
+	border-collapse: collapse;
+	border: 2px solid blue;
+}
+
+th td tr {
+	border: 2px solid blue;
+	width: 10%;
+	height: auto;
+}
+</style>
+</head>
+<body>
+<table border="1">
+		<thead>
+			<tr>
+				<th>Leave Id</th>
+				<th>Employee No</th>
+				<th>No of Days</th>
+				<th>Reason</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tr th:each="leave:${leavelist}">
+			<td><span th:text="${leave.leaveId}"></span></td>
+			<td><span th:text="${leave.empNo}"></span></td>
+			<td><span th:text="${leave.noOfDays}"></span></td>
+			<td><span th:text="${leave.reason}"></span></td>
+			<td><span th:text="${leave.status}"></span></td>
+		</tr>
+	</table>
+</body>
+</html>

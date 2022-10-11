@@ -1,0 +1,56 @@
+version: '3'
+services:
+  eureka-server:
+    image: eureka-server:1.0
+    container_name: eureka-server
+    expose:
+    - "8100"
+    ports: 
+    - 8100:8100 
+  employee-service:
+    image: employee-microservice:1.0
+   # container_name: employee-service
+    ports:
+    - "8200:8200"
+    environment:
+      - JAVA_OPTS=
+            -DEUREKA_SERVER=http://eureka-server:8100/eureka  -DDB_USER=admin -DDB_PASSWORD=qaz12345 -DJDBC_URL=jdbc:mariadb://training.cf35ca9kunzz.us-east-1.rds.amazonaws.com/training
+      
+    links: 
+        - eureka-server
+
+  admin-service:
+    image: admin-microservice:1.0
+    #container_name: admin-service
+    ports:
+    - "8300:8300"
+    environment:
+      - JAVA_OPTS=
+            -DEUREKA_SERVER=http://eureka-server:8100/eureka  -DDB_USER=admin -DDB_PASSWORD=qaz12345 -DJDBC_URL=jdbc:mariadb://training.cf35ca9kunzz.us-east-1.rds.amazonaws.com/training
+      
+    links: 
+        - eureka-server
+        
+        
+  emp-gateway-service:
+    image: gateway-service:1.0
+    #container_name: emp-gateway-service
+    ports:
+    - "8400:8400"
+    environment:
+      - JAVA_OPTS=
+            -DEUREKA_SERVER=http://eureka-server:8100/eureka  #(name of eureka host==eureka container name)
+      
+    links: 
+        - eureka-server
+  ui-service:
+    image: employee-management-thymeleaf:1.0
+    #container_name: ui-service
+    ports:
+    - "8500:8500"
+    environment:
+      - JAVA_OPTS=
+            -DEUREKA_SERVER=http://eureka-server:8100/eureka  #(name of eureka host==eureka container name)
+      
+    links: 
+        - eureka-server

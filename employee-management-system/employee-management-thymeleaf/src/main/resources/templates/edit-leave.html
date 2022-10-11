@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Leave</title>
+</head>
+<body>
+<h1>Edit Leave Status</h1>
+	<hr>
+	<form action="updateLeave" method="post" th:object="${leave}">
+		<span>Employee No</span><input type="text" th:field="*{empNo}"><br />
+		<span>Leave Id</span><input type="text" th:field="*{leaveId}"><br />
+		<span>No of Days</span><input type="text" th:field="*{noOfDays}"><br />
+		<span>Reason</span><input type="text" th:field="*{reason}"><br />
+		<span>Status</span><input type="text" th:field="*{status}"><br />
+		<input type="submit" value="Add Leave">
+	</form>
+</body>
+</html>
